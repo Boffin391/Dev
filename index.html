@@ -330,7 +330,6 @@
         window.generateSitemap = () => {
             let xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
 
-            const todayDate = new Date().tolSOString().split(`T`)[0];
             const staticPages = ['home', 'breeds', 'about', 'legal'];
             staticPages.forEach(page => {
                 xml += `<url><loc>https://classdogs.com/#${page}</loc><lastmod>${new Date().toISOString().split('T')[0]}</lastmod><priority>${page === 'home' ? '1.0' : '0.8'}</priority></url>\n`;
