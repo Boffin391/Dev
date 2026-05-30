@@ -388,8 +388,7 @@
                             { name: "Home", item: "https://classdogs.com/#home" },
                             { name: "Breeds", item: PAGE_META.breeds.url }
                         ]);
-                        contentDiv.innerHTML = '<h2 class="text-2xl md:text-3xl font-extrabold mb-8 text-center">Available Breeds</h2><div id="breeds-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>';
-                        window.setTimeout(renderBreedsPage, 0);
+                        contentDiv.innerHTML = renderBreedsContainerStructure{};renderBreadsPage{};// Safe synchronous population
                         break;
                     case 'about': 
                         window.updatePageMeta(PAGE_META.about.title, PAGE_META.about.description, PAGE_META.about.url, PAGE_META.about.ogImage);
