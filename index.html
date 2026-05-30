@@ -388,7 +388,11 @@
                             { name: "Home", item: "https://classdogs.com/#home" },
                             { name: "Breeds", item: PAGE_META.breeds.url }
                         ]);
-                        const container = document.createElement('div');container.id = 'breeds-container';container.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6';contentDiv.appendChild(container);renderBreedsPage();
+                        const container = document.createElement('div');
+                        container.id = 'breeds-container';
+                        container.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6';
+                        contentDiv.appendChild(container);
+                        renderBreedsPage();
                         break;
                     case 'about': 
                         window.updatePageMeta(PAGE_META.about.title, PAGE_META.about.description, PAGE_META.about.url, PAGE_META.about.ogImage);
