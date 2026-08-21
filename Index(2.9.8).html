@@ -152,6 +152,7 @@
             <nav class="flex space-x-3 md:space-x-4 overflow-x-auto w-full md:w-auto justify-center pb-1 md:pb-0">
                 <a href="#home" class="nav-btn text-xs md:text-base text-gray-700 hover:text-orange-600 font-medium transition whitespace-nowrap">Home</a>
                 <a href="#breeds" class="nav-btn text-xs md:text-base text-gray-700 hover:text-orange-600 font-medium transition whitespace-nowrap">Breeds</a>
+                <a href="#guide" class="nav-btn text-xs md:text-base text-gray-700 hover:text-orange-600 font-medium transition whitespace-nowrap">Breeds Guide</a>
                 <a href="#about" class="nav-btn text-xs md:text-base text-gray-700 hover:text-orange-600 font-medium transition whitespace-nowrap">About Us</a>
                 <a href="#legal" class="nav-btn text-xs md:text-base text-gray-700 hover:text-orange-600 font-medium transition whitespace-nowrap">Legal</a>
                 <a href="#admin" id="nav-admin-btn" class="nav-btn text-xs md:text-base text-gray-700 hover:text-orange-600 font-medium transition hidden">Admin</a>
@@ -259,7 +260,13 @@
                 description: "Terms and conditions, return policy, health liability, and privacy policy for Class Dogs Ltd puppy purchases and services.",
                 url: "https://classdogs.com/#legal",
                 ogImage: "https://storage.googleapis.com/classdogs.com/Imagegcs/Siri.jpg"
-            }
+            },
+            guide: {
+                title: "Breed Care Guide | Class Dogs Ltd",
+                description: "Learn how to care for Siberian Huskies in Kenya. Tips on climate management, exercise, nutrition, and temperament from Class Dogs Ltd.",
+                url: "https://classdogs.com/#guide",
+               ogImage: "https://storage.googleapis.com/classdogs.com/Imagegcs/Siri.jpg"
+            } 
         };
 
         window.resolveImageUrl = (src) => {
@@ -330,7 +337,7 @@
         window.generateSitemap = () => {
             let xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
             
-            const staticPages = ['home', 'breeds', 'about', 'legal'];
+            const staticPages = ['home', 'breeds', 'guide' 'about', 'legal'];
             staticPages.forEach(page => {
                 xml += `<url><loc>https://classdogs.com/#${page}</loc><lastmod>${new Date().toISOString().split('T')[0]}</lastmod><priority>${page === 'home' ? '1.0' : '0.8'}</priority></url>\n`;
             });
@@ -390,6 +397,14 @@
                         ]);
                         contentDiv.innerHTML = '<h2 class="text-2xl md:text-3xl font-extrabold mb-8 text-center">Available Breeds</h2><div id="breeds-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>';
                         window.setTimeout(renderBreedsPage, 0);
+                        break;
+                    case 'guide':
+                        window.updatePageMeta("Expert Breed Care Guides | Class Dogs Ltd Kenya", "Comprehensive care guides for Siberian Huskies, Golden Retrievers, Havanese, and South African Boerboels in Kenya.", "https://classdogs.com/#guide", "https://storage.googleapis.com/classdogs.com/Imagegcs/Siri.jpg");
+                        window.updateBreadcrumbSchema([
+                            { name: "Home", item: "https://classdogs.com/#home" },
+                            { name: "Breed Guides", item: "https://classdogs.com/#guide" }
+                        ]);
+                        contentDiv.innerHTML = renderGuidePage();
                         break;
                     case 'about': 
                         window.updatePageMeta(PAGE_META.about.title, PAGE_META.about.description, PAGE_META.about.url, PAGE_META.about.ogImage);
@@ -555,6 +570,83 @@
                             </div>
 
                             <a href="https://wa.me/254713844025?text=I%20am%20interested%20in%20the%20${encodeURIComponent(breed.breed)}" target="_blank" rel="noopener noreferrer" class="mt-auto bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition flex items-center justify-center text-sm md:text-base"><i data-lucide="message-circle" class="w-5 h-5 mr-2"></i>Contact via WhatsApp</a>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderGuidePage() {
+            return `
+                <div class="max-w-4xl mx-auto bg-white rounded-2xl md:rounded-3xl shadow-xl overflow-hidden p-6 md:p-12 mb-12">
+                    <header class="border-b pb-6 mb-8 text-center">
+                        <span class="text-xs font-bold uppercase tracking-wider text-orange-600 bg-orange-50 px-3 py-1 rounded-full">Expert Care Hub</span>
+                        <h1 class="serif text-3xl md:text-5xl font-bold mt-4 mb-2" style="color: var(--mahogany);">Kenyan Breed Care Guides</h1>
+                        <p class="text-sm md:text-base text-gray-600 max-w-2xl mx-auto">Select a breed below to explore tailored care, climate adaptation, and management guidelines for East Africa.</p>
+                    </header>
+
+                    <div class="flex flex-wrap justify-center gap-2 mb-8 border-b pb-4">
+                        <button onclick="window.switchGuideTab(event, 'husky')" class="guide-tab-btn active bg-orange-600 text-white font-semibold text-xs md:text-sm px-4 py-2 rounded-lg transition">Siberian Husky</button>
+                        <button onclick="window.switchGuideTab(event, 'golden')" class="guide-tab-btn bg-gray-100 text-gray-700 font-semibold text-xs md:text-sm px-4 py-2 rounded-lg transition">Golden Retriever</button>
+                        <button onclick="window.switchGuideTab(event, 'havanese')" class="guide-tab-btn bg-gray-100 text-gray-700 font-semibold text-xs md:text-sm px-4 py-2 rounded-lg transition">Havanese</button>
+                        <button onclick="window.switchGuideTab(event, 'boerboel')" class="guide-tab-btn bg-gray-100 text-gray-700 font-semibold text-xs md:text-sm px-4 py-2 rounded-lg transition">South African Boerboel</button>
+                    </div>
+
+                    <!-- HUSKY TAB -->
+                    <div id="guide-husky" class="guide-content space-y-6">
+                        <div class="rounded-2xl overflow-hidden shadow-lg h-64"><img src="https://storage.googleapis.com/classdogs.com/Imagegcs/Siri.jpg" alt="Siberian Husky" class="w-full h-full object-cover"></div>
+                        <h2 class="text-2xl font-bold" style="color: var(--mahogany);">Siberian Husky Care in Kenya</h2>
+                        <p class="text-sm md:text-base text-gray-700">Huskies feature a thick double coat that insulates against varying temperatures, making them adaptable when managed correctly.</p>
+                        <ul class="space-y-2 text-sm md:text-base text-gray-700 list-disc pl-5">
+                            <li><strong>Coat Management:</strong> Never shave your Husky. Shaving damages their natural temperature regulation and exposes skin to UV radiation.</li>
+                            <li><strong>Climate & Hydration:</strong> Provide constant shade and fresh cool water during warmer periods in regions like Mombasa. Schedule walks for early mornings or late evenings.</li>
+                            <li><strong>Security:</strong> Secure high fences or walls to prevent their natural instinct for wandering or digging.</li>
+                        </ul>
+                    </div>
+
+                    <!-- GOLDEN RETRIEVER TAB -->
+                    <div id="guide-golden" class="guide-content space-y-6 hidden">
+                        <div class="rounded-2xl overflow-hidden shadow-lg h-64"><img src="https://storage.googleapis.com/classdogs.com/Imagegcs/Chase02.jpg" alt="Golden Retriever" class="w-full h-full object-cover"></div>
+                        <h2 class="text-2xl font-bold" style="color: var(--mahogany);">Golden Retriever Care in Kenya</h2>
+                        <p class="text-sm md:text-base text-gray-700">Renowned for gentle dispositions and high trainability, Golden Retrievers thrive in active family environments across Nairobi and up-country homes.</p>
+                        <ul class="space-y-2 text-sm md:text-base text-gray-700 list-disc pl-5">
+                            <li><strong>Grooming:</strong> Regular weekly brushing prevents matting of their water-repellent coat, especially during shedding seasons.</li>
+                            <li><strong>Exercise Needs:</strong> High energy levels require daily fetch sessions, jogging, or structured outdoor activities.</li>
+                            <li><strong>Health Monitoring:</strong> Routine veterinary checks for joint health and parasite prevention are essential in tropical environments.</li>
+                        </ul>
+                    </div>
+
+                    <!-- HAVANESE TAB -->
+                    <div id="guide-havanese" class="guide-content space-y-6 hidden">
+                        <div class="rounded-2xl overflow-hidden shadow-lg h-64"><img src="https://storage.googleapis.com/classdogs.com/Imagegcs/Lucky01.jpg" alt="Havanese" class="w-full h-full object-cover"></div>
+                        <h2 class="text-2xl font-bold" style="color: var(--mahogany);">Havanese Care in Kenya</h2>
+                        <p class="text-sm md:text-base text-gray-700">As adaptable small companion dogs, Havanese excel in apartment settings or suburban compounds while offering affectionate social energy.</p>
+                        <ul class="space-y-2 text-sm md:text-base text-gray-700 list-disc pl-5">
+                            <li><strong>Coat Maintenance:</strong> Their soft, silk-like coat is low-shedding, making them ideal for indoor living, though regular combing prevents tangles.</li>
+                            <li><strong>Companionship:</strong> Havanese thrive on human interaction and can experience separation anxiety if left alone for extended periods.</li>
+                            <li><strong>Exercise:</strong> Moderate daily indoor play and short walks are sufficient to keep them healthy and content.</li>
+                        </ul>
+                    </div>
+
+                    <!-- BOERBOEL TAB -->
+                    <div id="guide-boerboel" class="guide-content space-y-6 hidden">
+                        <div class="rounded-2xl overflow-hidden shadow-lg h-64"><img src="https://storage.googleapis.com/classdogs.com/Imagegcs/Fox01.jpg" alt="South African Boerboel" class="w-full h-full object-cover"></div>
+                        <h2 class="text-2xl font-bold" style="color: var(--mahogany);">South African Boerboel Care in Kenya</h2>
+                        <p class="text-sm md:text-base text-gray-700">The Boerboel is a powerful, confident mastiff breed prized for exceptional guarding capabilities and loyalty to family estates.</p>
+                        <ul class="space-y-2 text-sm md:text-base text-gray-700 list-disc pl-5">
+                            <li><strong>Training & Socialization:</strong> Early obedience training and structured socialization are critical due to their protective instincts and strong physique.</li>
+                            <li><strong>Compound Space:</strong> Best suited for secure properties with substantial compound space where they can patrol and exercise safely.</li>
+                            <li><strong>Diet & Joint Support:</strong> Feed high-protein nutrition formulated for large working breeds to support bone and muscle development during rapid puppy growth phases.</li>
+                        </ul>
+                    </div>
+
+                    <div class="mt-12 bg-gray-800 text-white p-6 md:p-8 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-6">
+                        <div>
+                            <h3 class="text-xl font-bold text-orange-400 mb-2">Ready to Welcome a New Companion?</h3>
+                            <p class="text-xs md:text-sm text-gray-300">Contact Class Dogs Ltd for health-guaranteed, EAKC-registered puppies.</p>
+                        </div>
+                        <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+                            <a href="tel:+254713844025" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-full flex items-center justify-center transition text-sm">Call 0713844025</a>
                         </div>
                     </div>
                 </div>
