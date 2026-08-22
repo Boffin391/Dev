@@ -457,7 +457,7 @@
                          onmousedown="window.galleryPaused=true" onmouseup="window.galleryPaused=false"
                          ontouchstart="window.galleryPaused=true" ontouchend="window.galleryPaused=false">
                         <div id="gallery-slideshow" class="flex transition-transform duration-700 ease-in-out h-full">
-                            ${window.galleryImages.map(img => `<div class="w-full flex-shrink-0 relative h-full"><img src="${window.resolveImageUrl(img.url)}" loading="lazy" alt="${img.caption}" class="w-full h-full object-contain bg-gray-900"></div>`).join('')}
+                            ${window.galleryImages.map(img => `<div class="w-full flex-shrink-0 relative h-full"><img src="${window.resolveImageUrl(img.url)}" loading="lazy" alt="${img.caption}" class="w-full h-auto object-contain bg-gray-900"></div>`).join('')}
                         </div>
                         <button onclick="window.changeGallerySlide(-1)" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-40 text-white p-2 md:p-3 rounded-full hover:bg-opacity-60 transition"><i data-lucide="chevron-left" class="w-5 h-5"></i></button>
                         <button onclick="window.changeGallerySlide(1)" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-40 text-white p-2 md:p-3 rounded-full hover:bg-opacity-60 transition"><i data-lucide="chevron-right" class="w-5 h-5"></i></button>
