@@ -514,14 +514,14 @@
             const container = document.getElementById('breeds-container');
             if (window.breeds.length === 0) { container.innerHTML = '<p class="text-center col-span-full py-20">Searching for puppies...</p>'; return; }
             container.innerHTML = window.breeds.map(breed => `
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col hover:shadow-2xl transition">
-                    <div class="h-48 md:h-64 overflow-hidden relative"><img src="${window.resolveImageUrl(breed.images[0])}" loading="lazy" alt="${breed.breed} puppy" class="w-full h-full object-cover"></div>
-                    <div class="p-4 md:p-6 flex-grow flex flex-col">
+                <div class="bg-white rounded-xl shadow-md border border-gray-100 overflow-hidden flex flex-col hover:shadow-xl transition duration-300">
+                    <div class="h-52 md:h-60 overflow-hidden relative bg-gray-50 border-b border-gray-100"><img src="${window.resolveImageUrl(breed.images[0])}" loading="lazy" alt="${breed.breed} puppy" class="w-full h-full object-contain p-2"></div>
+                    <div class="p-5 md:p-6 flex-grow flex flex-col">
                         <h3 class="text-lg md:text-2xl font-bold mb-2 text-gray-800">${breed.breed}</h3>
-                        <p class="text-gray-600 mb-4 text-xs md:text-sm line-clamp-2">${breed.description}</p>
-                        <div class="mt-auto flex justify-between items-center border-t pt-4">
+                        <p class="text-gray-600 mb-4 text-xs md:text-sm line-clamp-2 leading-relaxed">${breed.description}</p>
+                        <div class="mt-auto flex justify-between items-center border-t border-gray-100 pt-4">
                             <span class="text-base md:text-xl font-bold text-orange-600">KES ${breed.price.toLocaleString()}</span>
-                            <a href="#details/${breed.id}" class="text-blue-600 text-sm md:text-base font-semibold flex items-center hover:text-blue-800">Details <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i></a>
+                            <a href="#details/${breed.id}" class="text-blue-600 text-sm md:text-base font-semibold flex items-center hover:text-blue-800 transition">Details <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i></a>
                         </div>
                     </div>
                 </div>
@@ -600,7 +600,7 @@
 
                     <!-- HUSKY TAB -->
                     <div id="guide-husky" class="guide-content space-y-6">
-                        <div class="rounded-2xl overflow-hidden shadow-lg h-64"><img src="https://storage.googleapis.com/classdogs.com/Imagegcs/Siri.jpg" alt="Siberian Husky" class="w-full h-full object-cover"></div>
+                        <div class="rounded-2xl overflow-hidden shadow-lg h-64"><img src="https://storage.googleapis.com/classdogs.com/Imagegcs/Siri.jpg" alt="Siberian Husky" class="w-full h-full object-container bg-gray-900"></div>
                         <h2 class="text-2xl font-bold" style="color: var(--mahogany);">Siberian Husky Care in Kenya</h2>
                         <p class="text-sm md:text-base text-gray-700">Huskies feature a thick double coat that insulates against varying temperatures, making them adaptable when managed correctly.</p>
                         <ul class="space-y-2 text-sm md:text-base text-gray-700 list-disc pl-5">
@@ -612,7 +612,7 @@
 
                     <!-- GOLDEN RETRIEVER TAB -->
                     <div id="guide-golden" class="guide-content space-y-6 hidden">
-                        <div class="rounded-2xl overflow-hidden shadow-lg h-64"><img src="https://storage.googleapis.com/classdogs.com/Imagegcs/Chase02.jpg" alt="Golden Retriever" class="w-full h-full object-cover"></div>
+                        <div class="rounded-2xl overflow-hidden shadow-lg h-64"><img src="https://storage.googleapis.com/classdogs.com/Imagegcs/Chase02.jpg" alt="Golden Retriever" class="w-full h-full object-container bg-gray-900"></div>
                         <h2 class="text-2xl font-bold" style="color: var(--mahogany);">Golden Retriever Care in Kenya</h2>
                         <p class="text-sm md:text-base text-gray-700">Renowned for gentle dispositions and high trainability, Golden Retrievers thrive in active family environments across Nairobi and up-country homes.</p>
                         <ul class="space-y-2 text-sm md:text-base text-gray-700 list-disc pl-5">
@@ -624,7 +624,7 @@
 
                     <!-- HAVANESE TAB -->
                     <div id="guide-havanese" class="guide-content space-y-6 hidden">
-                        <div class="rounded-2xl overflow-hidden shadow-lg h-64"><img src="https://storage.googleapis.com/classdogs.com/Imagegcs/Lucky01.jpg" alt="Havanese" class="w-full h-full object-cover"></div>
+                        <div class="rounded-2xl overflow-hidden shadow-lg h-64"><img src="https://storage.googleapis.com/classdogs.com/Imagegcs/Lucky01.jpg" alt="Havanese" class="w-full h-full object-container bg-gray-900"></div>
                         <h2 class="text-2xl font-bold" style="color: var(--mahogany);">Havanese Care in Kenya</h2>
                         <p class="text-sm md:text-base text-gray-700">As adaptable small companion dogs, Havanese excel in apartment settings or suburban compounds while offering affectionate social energy.</p>
                         <ul class="space-y-2 text-sm md:text-base text-gray-700 list-disc pl-5">
@@ -636,7 +636,7 @@
 
                     <!-- BOERBOEL TAB -->
                     <div id="guide-boerboel" class="guide-content space-y-6 hidden">
-                        <div class="rounded-2xl overflow-hidden shadow-lg h-64"><img src="https://storage.googleapis.com/classdogs.com/Imagegcs/Fox01.jpg" alt="South African Boerboel" class="w-full h-full object-cover"></div>
+                        <div class="rounded-2xl overflow-hidden shadow-lg h-64"><img src="https://storage.googleapis.com/classdogs.com/Imagegcs/Fox01.jpg" alt="South African Boerboel" class="w-full h-full object-container bg-gray-900"></div>
                         <h2 class="text-2xl font-bold" style="color: var(--mahogany);">South African Boerboel Care in Kenya</h2>
                         <p class="text-sm md:text-base text-gray-700">The Boerboel is a powerful, confident mastiff breed prized for exceptional guarding capabilities and loyalty to family estates.</p>
                         <ul class="space-y-2 text-sm md:text-base text-gray-700 list-disc pl-5">
@@ -661,52 +661,52 @@
 
         function renderAboutPage() {
             return `
-                <div class="max-w-6xl mx-auto relative py-10 md:py-20">
-                    <div class="text-center mb-16 md:mb-24">
+                <div class="max-w-6xl mx-auto relative py-10 md:py-16">
+                    <div class="text-center mb-12 md:mb-20">
                         <h1 class="serif text-5xl md:text-8xl text-[var(--mahogany)] mb-4 md:mb-6 animate-fade-in">ClassDogs</h1>
                         <p class="serif italic text-2xl md:text-3xl text-[var(--warm-gold)] tracking-widest uppercase">Pedigree Authenticity</p>
-                        <div class="w-24 md:w-40 h-1 bg-[var(--warm-gold)] mx-auto mt-8 md:mt-10 rounded-full opacity-50"></div>
+                        <div class="w-24 md:w-40 h-1 bg-[var(--warm-gold)] mx-auto mt-6 md:mt-8 rounded-full opacity-50"></div>
                     </div>
 
-                    <div class="glass-card p-8 md:p-20 relative bg-[#fdfaf5] mb-20 mx-4">
+                    <div class="glass-card p-6 md:p-16 relative bg-[#fdfaf5] mb-16 mx-2 md:mx-4 mt-8">
                         <div class="gold-badge shadow-2xl">
                             <span class="leading-tight uppercase tracking-tighter">5 Years<br>of Growth</span>
                         </div>
-                        <div class="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
-                            <div class="space-y-6 md:space-y-10">
+                        <div class="grid md:grid-cols-2 gap-8 md:gap-16 items-center pt-4 md:pt-0">
+                            <div class="space-y-4 md:space-y-8">
                                 <h2 class="serif text-3xl md:text-4xl text-[var(--forest-green)] leading-tight">Our Journey in Kahawa Sukari</h2>
                                 <p class="text-base md:text-lg text-gray-700 leading-relaxed font-light">
                                     For five years, ClassDogs has been dedicated to the art of exceptional breeding. Located in the heart of Kahawa Sukari, Nairobi, we bridge the gap between reputable breeders and families seeking premium, healthy puppies. Our commitment to EAKC registration and health screening ensures every puppy meets the highest standards of genetic purity and physical wellness.
                                 </p>
                             </div>
-                            <div class="bg-[var(--forest-green)] p-10 md:p-16 rounded-[40px] text-white shadow-inner transform rotate-1">
-                                <p class="serif italic text-2xl md:text-3xl leading-relaxed opacity-90">
+                            <div class="bg-[var(--forest-green)] p-8 md:p-12 rounded-[30px] text-white shadow-inner transform rotate-1">
+                                <p class="serif italic text-xl md:text-2xl leading-relaxed opacity-95">
                                     "The breeding of dogs must be based on the principle that the health, temperament, and welfare of the dogs are primary, and that morphological characteristics must never outweigh these considerations."
                                 </p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="grid md:grid-cols-3 gap-8 md:gap-12 px-4">
-                        <div class="pillar-card bg-white p-10 rounded-3xl shadow-sm border border-gray-100 text-center">
+                    <div class="grid md:grid-cols-3 gap-6 md:gap-8 px-2 md:px-4">
+                        <div class="pillar-card bg-white p-8 rounded-3xl shadow-sm border border-gray-100 text-center">
                             <div class="w-16 h-16 bg-orange-50 rounded-2xl flex items-center justify-center mx-auto mb-6">
                                 <i data-lucide="shield-check" class="text-orange-600 w-8 h-8"></i>
                             </div>
-                            <h3 class="serif text-2xl mb-4 text-[var(--mahogany)]">Health Guaranteed</h3>
+                            <h3 class="serif text-2xl mb-3 text-[var(--mahogany)]">Health Guaranteed</h3>
                             <p class="text-gray-600 text-sm leading-relaxed">Rigorous veterinary screening and vaccination protocols for every puppy to ensure lifelong health.</p>
                         </div>
-                        <div class="pillar-card bg-white p-10 rounded-3xl shadow-sm border border-gray-100 text-center">
+                        <div class="pillar-card bg-white p-8 rounded-3xl shadow-sm border border-gray-100 text-center">
                             <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center mx-auto mb-6">
                                 <i data-lucide="award" class="text-blue-600 w-8 h-8"></i>
                             </div>
-                            <h3 class="serif text-2xl mb-4 text-[var(--mahogany)]">Elite Pedigree</h3>
+                            <h3 class="serif text-2xl mb-3 text-[var(--mahogany)]">Elite Pedigree</h3>
                             <p class="text-gray-600 text-sm leading-relaxed">Parents are EAKC registered, ensuring pure genetic excellence and show-quality lineage.</p>
                         </div>
-                        <div class="pillar-card bg-white p-10 rounded-3xl shadow-sm border border-gray-100 text-center">
+                        <div class="pillar-card bg-white p-8 rounded-3xl shadow-sm border border-gray-100 text-center">
                             <div class="w-16 h-16 bg-green-50 rounded-2xl flex items-center justify-center mx-auto mb-6">
                                 <i data-lucide="heart" class="text-green-600 w-8 h-8"></i>
                             </div>
-                            <h3 class="serif text-2xl mb-4 text-[var(--mahogany)]">Lifetime Support</h3>
+                            <h3 class="serif text-2xl mb-3 text-[var(--mahogany)]">Lifetime Support</h3>
                             <p class="text-gray-600 text-sm leading-relaxed">Dedicated guidance on nutrition, training, and behavioral support for all our clients.</p>
                         </div>
                     </div>
