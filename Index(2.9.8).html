@@ -64,17 +64,22 @@
         
         .glass-card { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); border: 1px solid rgba(212, 175, 55, 0.25); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05); border-radius: 24px; }
         .pillar-card { transition: transform 0.3s ease; box-shadow: 0.3s ease; border: 1px solid #edf2f7; }
-        .pillar-card:hover { transform: translateY(-5px); }
+        .pillar-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1); }
         
         .gold-badge {
             background: linear-gradient(135deg, #d4af37 0%, #f1d37e 100%);
             width: 80px; height: 80px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
             text-align: center; color: white; font-weight: bold; font-size: 0.7rem;
-            position: absolute; top: -40px; right: 20px; z-index: 10;
+            position: absolute; top: -30px; right: 20px; z-index: 10;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
         }
         @media (min-width: 768px) {
-            .gold-badge { width: 100px; height: 100px; top: -50px; font-size: 0.8rem; }
+            .gold-badge { width: 100px; height: 100px; top: -40px; font-size: 0.8rem; }
+        }
+
+        .btn-lift { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .btn-lift:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); }
         }
 
         .tab-content { display: none; }
