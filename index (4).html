@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- Google tag: GA4 (site analytics) + Google Ads (conversion tracking) share one loader -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GHPB90NSDR"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -38,13 +37,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Public+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-        /* =================================================================
-           DESIGN SYSTEM — "The Studbook"
-           A pedigree-registry aesthetic: parchment paper, deep pine green,
-           antique brass, and a mono "ledger" type for data/labels. Built to
-           feel like a breeder's registry book rather than a generic SaaS
-           template.
-        ================================================================= */
 
         :root {
             /* Paper + ink */
@@ -460,25 +452,6 @@
     </div>
 
     <script>
-        // =================================================================
-        // CLASS DOGS LTD — "The Studbook" redesign
-        // Same vanilla-JS hash-router SPA as before. Two things are load-
-        // bearing and intentionally UNCHANGED from the previous version:
-        //   1) Cloud storage — GOOGLE_CLOUD_CONFIG + loadDataFromCloud()
-        //      still read the real breed.json in the existing GCS bucket,
-        //      with the same localStorage fallback and data shape
-        //      ({id, breed, price, description, age, gender, purity, images}).
-        //   2) The admin tab — same secret reveal (click the logo 5x),
-        //      same auth check, same add/delete/export-JSON workflow.
-        // Everything else (visual design, copy, page structure, the old
-        // autoplay carousels) has been rebuilt.
-        // =================================================================
-
-        // ---------- Config (unchanged) ----------
-        // NOTE: adminEmail/adminPassword are still plain strings in
-        // client-side JS — visible to anyone who views source. Carried
-        // over as-is per the brief; swap in real server-side auth when
-        // you're ready to close that gap.
         const GOOGLE_CLOUD_CONFIG = {
             bucketUrl: "https://storage.googleapis.com/classdogs.com/", 
             imageSubfolder: "Imagegcs/",
@@ -488,22 +461,15 @@
             logoClickCountTrigger: 5 
         };
 
-        // World breed list for the admin "Add Listing" dropdown. Cleaned up
-        // from the previous version, which had a handful of non-canine
-        // entries mixed in (Goldfish, Gorilla, Gigantopithecus, etc.) —
-        // same mechanism, better data.
         const WORLD_BREEDS = ["Affenpinscher", "Afghan Hound", "Airedale Terrier", "Akita", "Alaskan Malamute", "American Bulldog", "American Eskimo Dog", "American Pit Bull Terrier", "American Staffordshire Terrier", "Anatolian Shepherd", "Australian Cattle Dog", "Australian Shepherd", "Australian Terrier", "Basenji", "Basset Hound", "Beagle", "Bearded Collie", "Bedlington Terrier", "Belgian Malinois", "Belgian Sheepdog", "Belgian Tervuren", "Bernese Mountain Dog", "Bichon Frise", "Black Russian Terrier", "Bloodhound", "Borzoi", "Boston Terrier", "Bouvier des Flandres", "Boxer", "Boykin Spaniel", "Briard", "Brittany", "Brussels Griffon", "Bull Terrier", "Bulldog", "Bullmastiff", "Cairn Terrier", "Canaan Dog", "Canadian Eskimo Dog", "Cane Corso", "Cardigan Welsh Corgi", "Caucasian Shepherd Dog", "Cavalier King Charles Spaniel", "Chesapeake Bay Retriever", "Chihuahua", "Chinese Crested", "Chinese Shar-Pei", "Chow Chow", "Cirneco dell'Etna", "Clumber Spaniel", "Cocker Spaniel", "Collie", "Coton de Tulear", "Curly-Coated Retriever", "Dachshund", "Dalmatian", "Dandie Dinmont Terrier", "Danish Broholmer", "Deerhound", "Doberman Pinscher", "Dogo Argentino", "Dogue de Bordeaux", "Drentsche Patrijshond", "Drever", "Dutch Shepherd", "English Cocker Spaniel", "English Foxhound", "English Pointer", "English Setter", "English Springer Spaniel", "English Toy Spaniel", "Entlebucher Mountain Dog", "Estrela Mountain Dog", "Eurasier", "Fawn Brittany", "Field Spaniel", "Fila Brasileiro", "Finnish Lapphund", "Finnish Spitz", "Flat-Coated Retriever", "Formosan Mountain Dog", "Fox Terrier", "Foxhound", "French Bulldog", "Frisian Water Dog", "Galgo Español", "German Pinscher", "German Shepherd", "German Shorthaired Pointer", "German Spitz", "German Wirehaired Pointer", "Giant Schnauzer", "Glen of Imaal Terrier", "Golden Retriever", "Gordon Setter", "Grand Basset Griffon Vendéen", "Grand Bleu de Gascogne", "Great Dane", "Great Pyrenees", "Greater Swiss Mountain Dog", "Greyhound", "Griffon Bleu de Gascogne", "Griffon Fauve de Bretagne", "Griffon Nivernais", "Hamiltonstövare", "Hanoverian Scenthound", "Harrier", "Havanese", "Ibizan Hound", "Irish Setter", "Irish Terrier", "Irish Water Spaniel", "Irish Wolfhound", "Italian Greyhound", "Jack Russell Terrier", "Japanese Chin", "Japanese Spitz", "Keeshond", "Kerry Blue Terrier", "Komondor", "Kuvasz", "Labrador Retriever", "Lagotto Romagnolo", "Lakeland Terrier", "Leonberger", "Lhasa Apso", "Maltese", "Manchester Terrier", "Mastiff", "Miniature Pinscher", "Miniature Schnauzer", "Neapolitan Mastiff", "Newfoundland", "Norfolk Terrier", "Norwegian Elkhound", "Norwich Terrier", "Old English Sheepdog", "Otterhound", "Papillon", "Parson Russell Terrier", "Pekingese", "Pembroke Welsh Corgi", "Petit Basset Griffon Vendéen", "Pharaoh Hound", "Pointer", "Pomeranian", "Poodle", "Portuguese Water Dog", "Pug", "Puli", "Rat Terrier", "Rhodesian Ridgeback", "Rottweiler", "Saint Bernard", "Saluki", "Samoyed", "Schipperke", "Scottish Deerhound", "Scottish Terrier", "Sealyham Terrier", "Shetland Sheepdog", "Shiba Inu", "Shih Tzu", "Siberian Husky", "Silky Terrier", "Skye Terrier", "Sloughi", "Soft Coated Wheaten Terrier", "South African Boerboel", "Spinone Italiano", "Staffordshire Bull Terrier", "Standard Schnauzer", "Sussex Spaniel", "Swedish Vallhund", "Tibetan Mastiff", "Tibetan Spaniel", "Tibetan Terrier", "Vizsla", "Weimaraner", "Welsh Springer Spaniel", "Welsh Terrier", "West Highland White Terrier", "Whippet", "Wire Fox Terrier", "Wirehaired Pointing Griffon", "Xoloitzcuintli", "Yorkshire Terrier"];
 
         // ---------- State ----------
         window.breeds = [];
         window.isAdminAuthenticated = false;
         window.logoClicks = 0;
-        window.currentBreedFilter = 'all'; // 'all' | 'registered' | 'nonregistered' — Puppies page filter
+        window.currentBreedFilter = 'all';
 
         // ---------- Conversion tracking (Google Ads) ----------
-        // Fired from every call/WhatsApp CTA on the site. There's no online
-        // checkout here, so a "conversion" is a visitor reaching out — the
-        // real-world equivalent of a purchase for a business like this.
         window.trackConversion = () => {
             if (typeof gtag === 'function') {
                 gtag('event', 'conversion', { 'send_to': 'AW-17840653013/ecMYCNHtpOgbENWFi7tC' });
@@ -511,17 +477,12 @@
         };
 
         // ---------- Registration-status helper ----------
-        // breed.registered is true (EAKC registered), false (non-registered),
-        // or absent on older listings that predate this field — shown
-        // honestly as "unspecified" rather than assumed either way.
         window.registrationBadge = (breed) => {
             if (breed.registered === true) return { label: 'EAKC Registered', cls: 'is-registered' };
             if (breed.registered === false) return { label: 'Non-Registered', cls: 'is-nonregistered' };
             return { label: 'Ask About Registration', cls: 'is-unspecified' };
         };
 
-        // Real client/champion photos — same bucket assets and captions as
-        // before, just rendered by a manual (non-autoplay) gallery now.
         window.galleryImages = [
             { url: "https://storage.googleapis.com/classdogs.com/Imagegcs/Happyclient01.jpg", caption: "Our Happy Client Family" },
             { url: "https://storage.googleapis.com/classdogs.com/Imagegcs/chase01.jpg", caption: "Joyful Moments Together" },
@@ -572,9 +533,6 @@
         };
 
         // ---------- SEO / cloud-image helpers ----------
-        // resolveImageUrl is part of the cloud-storage contract: it turns a
-        // bare filename stored in breed.json into a real GCS URL. Left
-        // unchanged.
         window.resolveImageUrl = (src) => {
             if (!src) return "https://placehold.co/800x600/CCCCCC/666666?text=No+Image";
             if (src.startsWith('http') || src.startsWith('data:')) return src;
@@ -651,9 +609,7 @@
             return xml;
         };
 
-        // ---------- Cloud data loading (unchanged) ----------
-        // Reads the real breed.json from GCS; falls back to whatever was
-        // last saved locally by the admin panel if the fetch fails.
+        // ---------- Cloud data loading ----------
         async function loadDataFromCloud() {
             try {
                 const response = await fetch(GOOGLE_CLOUD_CONFIG.jsonUrl, { cache: "no-store" });
@@ -668,8 +624,6 @@
         }
 
         // ---------- Router ----------
-        // Same route names as before (#home #breeds #guide #about #legal
-        // #admin #details/:id) so existing links/bookmarks keep working.
         const ROUTES = {
             home: {
                 meta: PAGE_META.home,
@@ -720,7 +674,7 @@
             });
 
             contentDiv.classList.remove('page-enter');
-            void contentDiv.offsetWidth; // restart the enter animation on every navigation
+            void contentDiv.offsetWidth;
             contentDiv.classList.add('page-enter');
 
             if (parts[0] === 'details' && parts.length === 2) {
@@ -739,10 +693,6 @@
         };
 
         // ---------- Gallery helper ----------
-        // Manual, scroll-snap gallery: swipe/drag or use the arrow buttons.
-        // Deliberately no autoplay — auto-rotating carousels are hard to
-        // read on a slow connection and easy to miss entirely, which
-        // matters more here than a moving hero.
         function renderSnapGallery(containerId, items, itemRenderer) {
             return `
                 <div class="relative">
@@ -1078,7 +1028,7 @@
 
                     <div id="guide-husky" class="tab-panel is-active">
                         ${renderGuidePanel({
-                            image: "Siri.jpg", breed: "Siberian Husky",
+                            image: "husky guide.JPG", breed: "Siberian Husky",
                             intro: "Bred for Siberian winters, huskies carry a thick double coat that — counterintuitively — helps regulate heat as well as cold. In Kenya's climate it's an asset if you manage it correctly, not a liability to shave away.",
                             stats: [["Lifespan", "12–15 yrs"], ["Size", "45–60 lbs"], ["Energy", "Very High"], ["Shedding", "Heavy, seasonal"]],
                             points: [
@@ -1094,7 +1044,7 @@
                     </div>
                     <div id="guide-golden" class="tab-panel hidden">
                         ${renderGuidePanel({
-                            image: "Chase02.jpg", breed: "Golden Retriever",
+                            image: "Lex01.jpg", breed: "Golden Retriever",
                             intro: "Bred as a gentle retrieving gun dog, the Golden's whole temperament is built around cooperating with people — exactly why it's Kenya's most requested family breed.",
                             stats: [["Lifespan", "10–12 yrs"], ["Size", "55–75 lbs"], ["Energy", "High"], ["Shedding", "Heavy, twice yearly"]],
                             points: [
@@ -1110,7 +1060,7 @@
                     </div>
                     <div id="guide-havanese" class="tab-panel hidden">
                         ${renderGuidePanel({
-                            image: "Lucky01.jpg", breed: "Havanese",
+                            image: "Havanese02.jpg", breed: "Havanese",
                             intro: "Cuba's national dog, and one of the few breeds genuinely built for apartment life — Havanese were bred to live indoors, underfoot, as company rather than as workers.",
                             stats: [["Lifespan", "14–16 yrs"], ["Size", "7–13 lbs"], ["Energy", "Moderate"], ["Shedding", "Minimal"]],
                             points: [
@@ -1126,7 +1076,7 @@
                     </div>
                     <div id="guide-boerboel" class="tab-panel hidden">
                         ${renderGuidePanel({
-                            image: "Fox01.jpg", breed: "South African Boerboel",
+                            image: "Shasha.jpg", breed: "South African Boerboel",
                             intro: "A mastiff-type guardian bred on South African farms, the Boerboel pairs serious size with a famously steady, family-first temperament — provided that temperament is shaped early.",
                             stats: [["Lifespan", "9–11 yrs"], ["Size", "150+ lbs"], ["Energy", "Moderate"], ["Shedding", "Low"]],
                             points: [
